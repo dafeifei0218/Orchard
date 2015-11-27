@@ -41,10 +41,22 @@ namespace Orchard.WarmupStarter {
             return false;
         }
 
+        /// <summary>
+        /// 等效于Request.Url.AbsoluteUri属性的值，
+        /// 源码注释说如果使用了代理请求、负载平衡等获取不了真是的绝对Url地址
+        /// </summary>
+        /// <param name="request">Web请求</param>
+        /// <returns></returns>
         public static string ToUrlString(HttpRequest request) {
             return string.Format("{0}://{1}{2}", request.Url.Scheme, request.Headers["Host"], request.RawUrl);
         }
 
+        /// <summary>
+        /// Url编码
+        /// 将一个url字符串转换成另一个字包含数字、字母和下划线的字符串
+        /// </summary>
+        /// <param name="url">url</param>
+        /// <returns></returns>
         public static string EncodeUrl(string url) {
             if (String.IsNullOrWhiteSpace(url)) {
                 throw new ArgumentException("url can't be empty");
