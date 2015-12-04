@@ -5,10 +5,17 @@ using System.Web;
 using System.Web.Hosting;
 
 namespace Orchard.WarmupStarter {
+    /// <summary>
+    /// 启动初始化工具类
+    /// </summary>
     public static class WarmupUtility {
+
         public static readonly string WarmupFilesPath = "~/App_Data/Warmup/";
+
         /// <summary>
         /// return true to put request on hold (until call to Signal()) - return false to allow pipeline to execute immediately
+        /// 返回一个bool值表示是否已经在该方法内处理了BeginRequest事件
+        /// true：请求暂停（直到Signal()）；false：允许执行管道
         /// </summary>
         /// <param name="httpApplication"></param>
         /// <returns></returns>
