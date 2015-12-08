@@ -22,6 +22,8 @@ namespace Orchard.WarmupStarter {
         public static bool DoBeginRequest(HttpApplication httpApplication) {
             // use the url as it was requested by the client
             // the real url might be different if it has been translated (proxy, load balancing, ...)
+            //使用该网址，因为它是由客户端请求
+            //真正的网址可能是不同的，如果它已被翻译（代理，负载平衡，…）
             var url = ToUrlString(httpApplication.Request);
             var virtualFileCopy = WarmupUtility.EncodeUrl(url.Trim('/'));
             var localCopy = Path.Combine(HostingEnvironment.MapPath(WarmupFilesPath), virtualFileCopy);
