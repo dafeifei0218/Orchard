@@ -8,7 +8,9 @@ using Autofac.Core;
 using Module = Autofac.Module;
 
 namespace Orchard.Logging {
-
+    /// <summary>
+    /// 日志模块
+    /// </summary>
     public class LoggingModule : Module {
         private readonly ConcurrentDictionary<string, ILogger> _loggerCache;
 
@@ -18,10 +20,12 @@ namespace Orchard.Logging {
 
         protected override void Load(ContainerBuilder moduleBuilder) {
             // by default, use Orchard's logger that delegates to Castle's logger factory
+            //默认使用委托Orchard的日志记录器到Castle的日志记录器工厂
             moduleBuilder.RegisterType<CastleLoggerFactory>().As<ILoggerFactory>().InstancePerLifetimeScope();
             moduleBuilder.RegisterType<OrchardLog4netFactory>().As<Castle.Core.Logging.ILoggerFactory>().InstancePerLifetimeScope();
 
             // call CreateLogger in response to the request for an ILogger implementation
+            //响应一个ILogger日志实现，请求CreateLogger
             moduleBuilder.Register(CreateLogger).As<ILogger>().InstancePerDependency();
         }
 
@@ -71,6 +75,12 @@ namespace Orchard.Logging {
             }
         }
 
+        /// <summary>
+        /// 创建日志
+        /// </summary>
+        /// <param name="context">组件上下文</param>
+        /// <param name="parameters">参数集合</param>
+        /// <returns></returns>
         private static ILogger CreateLogger(IComponentContext context, IEnumerable<Parameter> parameters) {
             // return an ILogger in response to Resolve<ILogger>(componentTypeParameter)
             var loggerFactory = context.Resolve<ILoggerFactory>();

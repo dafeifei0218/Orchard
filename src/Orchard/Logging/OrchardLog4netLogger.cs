@@ -10,6 +10,9 @@ using log4net.Util;
 using Logger = Castle.Core.Logging.ILogger;
 
 namespace Orchard.Logging {
+    /// <summary>
+    /// 
+    /// </summary>
     [Serializable]
     public class OrchardLog4netLogger : MarshalByRefObject, Logger, IShim {
         private static readonly Type declaringType = typeof(OrchardLog4netLogger);

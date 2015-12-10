@@ -1,6 +1,9 @@
 using System;
 
 namespace Orchard.Logging {
+    /// <summary>
+    /// ©ухуж╬
+    /// </summary>
     public class NullLogger : ILogger {
         private static readonly ILogger _instance = new NullLogger();
 
