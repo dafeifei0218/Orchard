@@ -3,27 +3,34 @@ using log4net.Appender;
 using log4net.Util;
 
 namespace Orchard.Logging {
+    /// <summary>
+    /// Orchard文件附加类
+    /// </summary>
     public class OrchardFileAppender : RollingFileAppender {
         /// <summary>
         /// Dictionary of already known suffixes (based on previous attempts) for a given filename.
+        /// 后缀，
         /// </summary>
         private static readonly Dictionary<string, int> _suffixes = new Dictionary<string, int>();
 
         /// <summary>
         /// The number of suffix attempts that will be made on each OpenFile method call.
+        /// 重试次数，
         /// </summary>
         private const int Retries = 50;
 
         /// <summary>
         /// Maximum number of suffixes recorded before a cleanup happens to recycle memory.
+        /// 最大后缀
         /// </summary>
         private const int MaxSuffixes = 100;
 
         /// <summary>
         /// Opens the log file adding an incremental suffix to the filename if required due to an openning failure (usually, locking).
+        /// 打开文件
         /// </summary>
-        /// <param name="fileName">The filename as specified in the configuration file.</param>
-        /// <param name="append">Boolean flag indicating weather the log file should be appended if it already exists.</param>
+        /// <param name="fileName">The filename as specified in the configuration file. 文件名</param>
+        /// <param name="append">Boolean flag indicating weather the log file should be appended if it already exists. 追加</param>
         protected override void OpenFile(string fileName, bool append) {
             lock (this) {
                 bool fileOpened = false;

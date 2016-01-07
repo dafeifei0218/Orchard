@@ -12,12 +12,22 @@ namespace Orchard.Logging {
     /// 日志模块
     /// </summary>
     public class LoggingModule : Module {
+        /// <summary>
+        /// 日志缓存
+        /// </summary>
         private readonly ConcurrentDictionary<string, ILogger> _loggerCache;
 
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public LoggingModule() {
             _loggerCache = new ConcurrentDictionary<string, ILogger>();
         }
 
+        /// <summary>
+        /// 加载
+        /// </summary>
+        /// <param name="moduleBuilder"></param>
         protected override void Load(ContainerBuilder moduleBuilder) {
             // by default, use Orchard's logger that delegates to Castle's logger factory
             //默认使用委托Orchard的日志记录器到Castle的日志记录器工厂
@@ -29,6 +39,11 @@ namespace Orchard.Logging {
             moduleBuilder.Register(CreateLogger).As<ILogger>().InstancePerDependency();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="componentRegistry"></param>
+        /// <param name="registration"></param>
         protected override void AttachToComponentRegistration(IComponentRegistry componentRegistry, IComponentRegistration registration) {
             var implementationType = registration.Activator.LimitType;
 
@@ -46,6 +61,11 @@ namespace Orchard.Logging {
             };
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="componentType"></param>
+        /// <returns></returns>
         private IEnumerable<Action<IComponentContext, object>> BuildLoggerInjectors(Type componentType) {
             // Look for settable properties of type "ILogger" 
             var loggerProperties = componentType

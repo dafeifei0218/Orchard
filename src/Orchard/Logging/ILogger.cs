@@ -32,18 +32,18 @@ namespace Orchard.Logging {
     /// </summary>
     public interface ILogger {
         /// <summary>
-        /// 是否开启
+        /// 是否启用
         /// </summary>
         /// <param name="level">日志级别</param>
         /// <returns></returns>
         bool IsEnabled(LogLevel level);
         /// <summary>
-        /// 日志
+        /// 记录日志
         /// </summary>
         /// <param name="level">日志级别</param>
         /// <param name="exception">错误信息</param>
         /// <param name="format">格式</param>
-        /// <param name="args">对象</param>
+        /// <param name="args">对象集合</param>
         void Log(LogLevel level, Exception exception, string format, params object[] args);
     }
 }

@@ -1,6 +1,9 @@
 using System;
 
 namespace Orchard.Logging {
+    /// <summary>
+    /// 日志扩展类
+    /// </summary>
     public static class LoggingExtensions {
         public static void Debug(this ILogger logger, string message) {
             FilteredLog(logger, LogLevel.Debug, null, message, null);
