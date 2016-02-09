@@ -5,6 +5,7 @@ namespace Orchard.Logging {
     /// Castle日志类
     /// </summary>
     public class CastleLogger : ILogger {
+        //Castle日志
         private readonly Castle.Core.Logging.ILogger _castleLogger;
 
         /// <summary>
@@ -29,7 +30,7 @@ namespace Orchard.Logging {
         /// <summary>
         /// 是否启用
         /// </summary>
-        /// <param name="level"></param>
+        /// <param name="level">日志级别</param>
         /// <returns></returns>
         public bool IsEnabled(LogLevel level) {
             switch(level) {
@@ -50,7 +51,7 @@ namespace Orchard.Logging {
         /// <summary>
         /// 记录日志
         /// </summary>
-        /// <param name="level">级别</param>
+        /// <param name="level">日志级别</param>
         /// <param name="exception">异常</param>
         /// <param name="format">格式</param>
         /// <param name="args">对象集合</param>

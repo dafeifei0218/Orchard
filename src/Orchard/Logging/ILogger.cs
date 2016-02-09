@@ -35,8 +35,9 @@ namespace Orchard.Logging {
         /// 是否启用
         /// </summary>
         /// <param name="level">日志级别</param>
-        /// <returns></returns>
+        /// <returns>true：启用；false：不启用</returns>
         bool IsEnabled(LogLevel level);
+
         /// <summary>
         /// 记录日志
         /// </summary>

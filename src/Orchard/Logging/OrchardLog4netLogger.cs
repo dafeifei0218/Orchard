@@ -11,7 +11,7 @@ using Logger = Castle.Core.Logging.ILogger;
 
 namespace Orchard.Logging {
     /// <summary>
-    /// OrchardLog4net日志
+    /// OrchardLog4net日志类
     /// </summary>
     [Serializable]
     public class OrchardLog4netLogger : MarshalByRefObject, Logger, IShim {
@@ -22,7 +22,7 @@ namespace Orchard.Logging {
         private readonly Lazy<ShellSettings> _shellSettings;
 
         /// <summary>
-        /// 
+        /// Orchard主机容器
         /// </summary>
         public IOrchardHostContainer HostContainer { get; set; }
 
@@ -30,7 +30,7 @@ namespace Orchard.Logging {
         /// 构造函数
         /// </summary>
         /// <param name="logger">日志</param>
-        /// <param name="factory"></param>
+        /// <param name="factory">OrchardLog4net日志工厂</param>
         public OrchardLog4netLogger(log4net.Core.ILogger logger, OrchardLog4netFactory factory) {
             OrchardHostContainerRegistry.RegisterShim(this);
             Logger = logger;
@@ -40,16 +40,16 @@ namespace Orchard.Logging {
         }
         
         /// <summary>
-        /// 
+        /// 构造函数
         /// </summary>
         internal OrchardLog4netLogger() {
         }
 
         /// <summary>
-        /// 
+        /// 构造函数
         /// </summary>
-        /// <param name="log"></param>
-        /// <param name="factory"></param>
+        /// <param name="log">日志</param>
+        /// <param name="factory">OrchardLog4net日志工厂</param>
         internal OrchardLog4netLogger(ILog log, OrchardLog4netFactory factory)
             : this(log.Logger, factory) {
         }
@@ -110,42 +110,42 @@ namespace Orchard.Logging {
         }
 
         /// <summary>
-        /// 
+        /// 是否启用调试级别
         /// </summary>
         public bool IsDebugEnabled {
             get { return Logger.IsEnabledFor(Level.Debug); }
         }
 
         /// <summary>
-        /// 
+        /// 是否启用错误级别
         /// </summary>
         public bool IsErrorEnabled {
             get { return Logger.IsEnabledFor(Level.Error); }
         }
 
         /// <summary>
-        /// 
+        /// 是否启用致命级别
         /// </summary>
         public bool IsFatalEnabled {
             get { return Logger.IsEnabledFor(Level.Fatal); }
         }
 
         /// <summary>
-        /// 
+        /// 是否启用信息级别
         /// </summary>
         public bool IsInfoEnabled {
             get { return Logger.IsEnabledFor(Level.Info); }
         }
 
         /// <summary>
-        /// 
+        /// 是否启用警告级别
         /// </summary>
         public bool IsWarnEnabled {
             get { return Logger.IsEnabledFor(Level.Warn); }
         }
 
         /// <summary>
-        /// 
+        /// OrchardLog4net工厂
         /// </summary>
         protected internal OrchardLog4netFactory Factory { get; set; }
 
@@ -163,9 +163,9 @@ namespace Orchard.Logging {
         }
 
         /// <summary>
-        /// 
+        /// 创建子日志
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">名称</param>
         /// <returns></returns>
         public virtual Logger CreateChildLogger(String name) {
             return Factory.Create(Logger.Name + "." + name);

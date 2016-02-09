@@ -5,6 +5,7 @@ namespace Orchard.Logging {
     /// Castle日志工厂
     /// </summary>
     public class CastleLoggerFactory : ILoggerFactory {
+        //Castle日志工厂
         private readonly Castle.Core.Logging.ILoggerFactory _castleLoggerFactory;
 
         /// <summary>

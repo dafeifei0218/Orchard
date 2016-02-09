@@ -40,21 +40,24 @@ namespace Orchard.Logging {
         }
 
         /// <summary>
-        /// 
+        /// 附加组件注册
         /// </summary>
-        /// <param name="componentRegistry"></param>
+        /// <param name="componentRegistry">组件注册</param>
         /// <param name="registration"></param>
         protected override void AttachToComponentRegistration(IComponentRegistry componentRegistry, IComponentRegistration registration) {
             var implementationType = registration.Activator.LimitType;
 
             // build an array of actions on this type to assign loggers to member properties
+            //建造
             var injectors = BuildLoggerInjectors(implementationType).ToArray();
 
             // if there are no logger properties, there's no reason to hook the activated event
+            //
             if (!injectors.Any())
                 return;
 
             // otherwise, whan an instance of this component is activated, inject the loggers on the instance
+            //
             registration.Activated += (s, e) => {
                 foreach (var injector in injectors)
                     injector(e.Context, e.Instance);
@@ -62,9 +65,9 @@ namespace Orchard.Logging {
         }
 
         /// <summary>
-        /// 
+        /// 建造日志注入器
         /// </summary>
-        /// <param name="componentType"></param>
+        /// <param name="componentType">组件类型</param>
         /// <returns></returns>
         private IEnumerable<Action<IComponentContext, object>> BuildLoggerInjectors(Type componentType) {
             // Look for settable properties of type "ILogger" 
@@ -103,6 +106,7 @@ namespace Orchard.Logging {
         /// <returns></returns>
         private static ILogger CreateLogger(IComponentContext context, IEnumerable<Parameter> parameters) {
             // return an ILogger in response to Resolve<ILogger>(componentTypeParameter)
+            //返回日志响应
             var loggerFactory = context.Resolve<ILoggerFactory>();
             var containingType = parameters.TypedAs<Type>();
             return loggerFactory.CreateLogger(containingType);

@@ -47,7 +47,7 @@ namespace Orchard.Logging {
         /// 创建日志
         /// </summary>
         /// <param name="name">日志名</param>
-        /// <returns></returns>
+        /// <returns>Castler日志对象</returns>
         public override Castle.Core.Logging.ILogger Create(string name) {
             return new OrchardLog4netLogger(LogManager.GetLogger(name), this);
         }
