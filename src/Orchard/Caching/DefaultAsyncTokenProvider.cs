@@ -6,6 +6,9 @@ using Orchard.Logging;
 using Orchard.Exceptions;
 
 namespace Orchard.Caching {
+    /// <summary>
+    /// 
+    /// </summary>
     public class DefaultAsyncTokenProvider : IAsyncTokenProvider {
         public DefaultAsyncTokenProvider() {
             Logger = NullLogger.Instance;
