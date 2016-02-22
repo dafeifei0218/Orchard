@@ -17,19 +17,20 @@ namespace Orchard.WarmupStarter {
         /// 返回一个bool值表示是否已经在该方法内处理了BeginRequest事件
         /// true：请求暂停（直到Signal()）；false：允许执行管道
         /// </summary>
-        /// <param name="httpApplication"></param>
+        /// <param name="httpApplication">ASP.NET应用程序</param>
         /// <returns></returns>
         public static bool DoBeginRequest(HttpApplication httpApplication) {
             // use the url as it was requested by the client
             // the real url might be different if it has been translated (proxy, load balancing, ...)
-            //使用该网址，因为它是由客户端请求
-            //真正的网址可能是不同的，如果它已被翻译（代理，负载平衡，…）
+            // 使用该网址，因为它是由客户端请求
+            // 真正的网址可能是不同的，如果它已被翻译（代理，负载平衡，…）
             var url = ToUrlString(httpApplication.Request);
             var virtualFileCopy = WarmupUtility.EncodeUrl(url.Trim('/'));
             var localCopy = Path.Combine(HostingEnvironment.MapPath(WarmupFilesPath), virtualFileCopy);
 
             if (File.Exists(localCopy)) {
                 // result should not be cached, even on proxies
+                // 结果不应该被缓存，即使代理
                 httpApplication.Response.Cache.SetExpires(DateTime.UtcNow.AddDays(-1));
                 httpApplication.Response.Cache.SetValidUntilExpires(false);
                 httpApplication.Response.Cache.SetRevalidation(HttpCacheRevalidation.AllCaches);
@@ -43,6 +44,8 @@ namespace Orchard.WarmupStarter {
 
             // there is no local copy and the file exists
             // serve the static file
+            // 没有本地复制文件存在
+            // 提供静态文件
             if (File.Exists(httpApplication.Request.PhysicalPath)) {
                 return true;
             }
@@ -74,11 +77,14 @@ namespace Orchard.WarmupStarter {
             var sb = new StringBuilder();
             foreach (var c in url.ToLowerInvariant()) {
                 // only accept alphanumeric chars
+                //只接受字母数字字符
                 if ((c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')) {
                     sb.Append(c);
                 }
-                    // otherwise encode them in UTF8
-                else {
+                // otherwise encode them in UTF8
+                //否则UTF8编码
+                else
+                {
                     sb.Append("_");
                     foreach (var b in Encoding.UTF8.GetBytes(new[] { c })) {
                         sb.Append(b.ToString("X"));

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Orchard.WarmupStarter {
     /// <summary>
-    /// 启动初始化模型
+    /// 启动初始化模块
     /// </summary>
     public class WarmupHttpModule : IHttpModule {
 
@@ -16,14 +16,22 @@ namespace Orchard.WarmupStarter {
         /// <summary>
         /// 初始化
         /// </summary>
+        /// <param name="context">应用程序上下文</param>
         public void Init(HttpApplication context) {
             _context = context;
             context.AddOnBeginRequestAsync(BeginBeginRequest, EndBeginRequest, null);
         }
 
+        /// <summary>
+        /// 销毁
+        /// </summary>
         public void Dispose() {
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         private static bool InWarmup() {
             lock (_synLock) {
                 return _awaiting != null;
@@ -45,7 +53,7 @@ namespace Orchard.WarmupStarter {
         /// <summary>
         /// Warmup code just completed: All pending requests in the "_await" queue are processed, 
         /// and any new incoming request is now processed immediately.
-        /// 启动代码刚要完成：所有挂起的请求，在“_await”队列进行处理，和任何新的传入请求现在立即处理。
+        /// 启动代码刚要完成：在“_await”队列进行处理，所有挂起的请求和任何新的传入请求现在立即处理。
         /// </summary>
         public static void SignalWarmupDone() {
             IList<Action> temp;
@@ -81,8 +89,17 @@ namespace Orchard.WarmupStarter {
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <param name="cb"></param>
+        /// <param name="extradata"></param>
+        /// <returns></returns>
         private IAsyncResult BeginBeginRequest(object sender, EventArgs e, AsyncCallback cb, object extradata) {
             // host is available, process every requests, or file is processed
+            // 主机是可用的，过程中的每一个要求，或文件处理
             if (!InWarmup() || WarmupUtility.DoBeginRequest(_context)) {
                 var asyncResult = new DoneAsyncResult(extradata);
                 cb(asyncResult);
@@ -90,12 +107,17 @@ namespace Orchard.WarmupStarter {
             }
             else {
                 // this is the "on hold" execution path
+                // 这是“搁置”的执行路径
                 var asyncResult = new WarmupAsyncResult(cb, extradata);
                 Await(asyncResult.Completed);
                 return asyncResult;
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ar"></param>
         private static void EndBeginRequest(IAsyncResult ar) {
         }
 
