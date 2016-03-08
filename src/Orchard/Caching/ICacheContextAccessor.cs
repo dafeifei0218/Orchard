@@ -4,7 +4,7 @@
     /// </summary>
     public interface ICacheContextAccessor {
         /// <summary>
-        /// 
+        /// 获取或设置缓存上下文
         /// </summary>
         IAcquireContext Current { get; set; }
     }

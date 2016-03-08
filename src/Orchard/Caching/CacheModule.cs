@@ -25,7 +25,7 @@ namespace Orchard.Caching
         /// 附件组件注册
         /// </summary>
         /// <param name="componentRegistry">组件注册</param>
-        /// <param name="registration"></param>
+        /// <param name="registration">注册</param>
         protected override void AttachToComponentRegistration(Autofac.Core.IComponentRegistry componentRegistry, Autofac.Core.IComponentRegistration registration)
         {
             var needsCacheManager = registration.Activator.LimitType

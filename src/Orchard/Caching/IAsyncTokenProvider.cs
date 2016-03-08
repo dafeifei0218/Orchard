@@ -8,7 +8,7 @@ namespace Orchard.Caching {
         /// <summary>
         /// 获取令牌
         /// </summary>
-        /// <param name="task"></param>
+        /// <param name="task">任务</param>
         /// <returns></returns>
         IVolatileToken GetToken(Action<Action<IVolatileToken>> task);
     }

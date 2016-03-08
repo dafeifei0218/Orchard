@@ -8,7 +8,7 @@ namespace Orchard.Caching {
     /// <typeparam name="TResult">缓存结果</typeparam>
     public interface ICache<TKey, TResult> {
         /// <summary>
-        /// 获取关村
+        /// 获取缓存
         /// </summary>
         /// <param name="key">键</param>
         /// <param name="acquire"></param>
