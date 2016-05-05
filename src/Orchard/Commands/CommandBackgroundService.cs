@@ -6,8 +6,12 @@ namespace Orchard.Commands {
     /// Note that we make this class "internal" so that it's not auto-registered
     /// by the Orchard Framework (it is registered explicitly by the command
     /// line host).
+    /// 
     /// </summary>
     internal class CommandBackgroundService : IBackgroundService {
+        /// <summary>
+        /// 
+        /// </summary>
         public void Sweep() {
             // Don't run any background service in command line
         }

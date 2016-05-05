@@ -3,13 +3,23 @@ using System.Linq;
 using Orchard.Localization;
 
 namespace Orchard.Commands.Builtin {
+    /// <summary>
+    /// 帮助命令
+    /// </summary>
     public class HelpCommand : DefaultOrchardCommandHandler {
         private readonly ICommandManager _commandManager;
 
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="commandManager">命令管理</param>
         public HelpCommand(ICommandManager commandManager) {
             _commandManager = commandManager;
         }
 
+        /// <summary>
+        /// 全部命令
+        /// </summary>
         [CommandName("help commands")]
         [CommandHelp("help commands\r\n\t" + "Display help text for all available commands")]
         public void AllCommands() {
@@ -24,6 +34,11 @@ namespace Orchard.Commands.Builtin {
             }
         }
 
+        /// <summary>
+        /// 获取帮助文本
+        /// </summary>
+        /// <param name="descriptor">命令描述</param>
+        /// <returns></returns>
         private LocalizedString GetHelpText(CommandDescriptor descriptor) {
             if (string.IsNullOrEmpty(descriptor.HelpText)) {
                 return T("{0}: no help text",
@@ -33,6 +48,10 @@ namespace Orchard.Commands.Builtin {
             return T(descriptor.HelpText);
         }
 
+        /// <summary>
+        /// 单命令
+        /// </summary>
+        /// <param name="commandNameStrings">命令名称字符串</param>
         [CommandName("help")]
         [CommandHelp("help <command>\r\n\t" + "Display help text for <command>")]
         public void SingleCommand(string[] commandNameStrings) {
