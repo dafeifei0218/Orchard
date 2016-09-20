@@ -6,9 +6,16 @@ using Orchard.Localization;
 using Orchard.Logging;
 
 namespace Orchard.Commands {
+    /// <summary>
+    /// 默认命令处理管理
+    /// </summary>
     public class DefaultCommandManager : ICommandManager {
         private readonly IEnumerable<Meta<Func<ICommandHandler>>> _handlers;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="handlers"></param>
         public DefaultCommandManager(IEnumerable<Meta<Func<ICommandHandler>>> handlers) {
             _handlers = handlers;
 
@@ -16,9 +23,19 @@ namespace Orchard.Commands {
             Logger = NullLogger.Instance;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public Localizer T { get; set; }
+        /// <summary>
+        /// 日志
+        /// </summary>
         public ILogger Logger { get; set; }
 
+        /// <summary>
+        /// 执行
+        /// </summary>
+        /// <param name="parameters">命令参数</param>
         public void Execute(CommandParameters parameters) {
             var matches = MatchCommands(parameters);
 
@@ -38,10 +55,19 @@ namespace Orchard.Commands {
             }
         }
 
+        /// <summary>
+        /// 获取命令描述集合
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<CommandDescriptor> GetCommandDescriptors() {
             return _handlers.SelectMany(h => GetDescriptor(h.Metadata).Commands);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         private IEnumerable<Match> MatchCommands(CommandParameters parameters) {
             // Command names are matched with as many arguments as possible, in decreasing order
             foreach (var argCount in Enumerable.Range(1, parameters.Arguments.Count()).Reverse()) {
@@ -54,6 +80,14 @@ namespace Orchard.Commands {
             return Enumerable.Empty<Match>();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <param name="argCount"></param>
+        /// <param name="descriptor"></param>
+        /// <param name="handlerFactory"></param>
+        /// <returns></returns>
         private static IEnumerable<Match> MatchCommands(CommandParameters parameters, int argCount, CommandHandlerDescriptor descriptor, Func<ICommandHandler> handlerFactory) {
             foreach (var commandDescriptor in descriptor.Commands) {
                 var names = commandDescriptor.Name.Split(' ');
@@ -76,12 +110,26 @@ namespace Orchard.Commands {
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="metadata"></param>
+        /// <returns></returns>
         private static CommandHandlerDescriptor GetDescriptor(IDictionary<string, object> metadata) {
             return ((CommandHandlerDescriptor)metadata[typeof(CommandHandlerDescriptor).FullName]);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private class Match {
+            /// <summary>
+            /// 命令上下文
+            /// </summary>
             public CommandContext Context { get; set; }
+            /// <summary>
+            /// 命令处理工厂
+            /// </summary>
             public Func<ICommandHandler> CommandHandlerFactory { get; set; }
         }
     }

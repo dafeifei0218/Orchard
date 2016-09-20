@@ -21,30 +21,60 @@ namespace Orchard.Commands {
     
     /// <summary>
     /// Different return codes for a command execution.
+    /// 命令结果代码。
+    /// 命令执行的不同返回代码。
     /// </summary>
     public enum CommandReturnCodes
     {
+        /// <summary>
+        /// 确定
+        /// </summary>
         Ok = 0,
+        /// <summary>
+        /// 失败
+        /// </summary>
         Fail = 5,
+        /// <summary>
+        /// 重试
+        /// </summary>
         Retry = 240
     }
 
     /// <summary>
     /// This is the guy instantiated by the orchard.exe host. It is reponsible for
     /// executing a single command.
+    /// 命令主机代理。
+    /// 这家伙的orchard.exe主机实例化。它用于执行一个单一的命令。
     /// </summary>
     public class CommandHostAgent {
         private IContainer _hostContainer;
 
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public CommandHostAgent() {
             T = NullLocalizer.Instance;
             Logger = NullLogger.Instance;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public Localizer T { get; set; }
+        /// <summary>
+        /// 日志
+        /// </summary>
         public ILogger Logger { get; set; }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="output"></param>
+        /// <param name="tenant"></param>
+        /// <param name="args"></param>
+        /// <param name="switches"></param>
+        /// <returns></returns>
         public CommandReturnCodes RunSingleCommand(TextReader input, TextWriter output, string tenant, string[] args, Dictionary<string, string> switches) {
             CommandReturnCodes result = StartHost(input, output);
             if (result != CommandReturnCodes.Ok)
@@ -57,6 +87,15 @@ namespace Orchard.Commands {
             return StopHost(input, output);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="output"></param>
+        /// <param name="tenant"></param>
+        /// <param name="args"></param>
+        /// <param name="switches"></param>
+        /// <returns></returns>
         public CommandReturnCodes RunCommand(TextReader input, TextWriter output, string tenant, string[] args, Dictionary<string, string> switches) {
             try {
                 tenant = tenant ?? ShellSettings.DefaultName;
@@ -114,6 +153,12 @@ namespace Orchard.Commands {
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="output"></param>
+        /// <returns></returns>
         public CommandReturnCodes StartHost(TextReader input, TextWriter output) {
             try {
                 _hostContainer = CreateHostContainer();
@@ -133,6 +178,12 @@ namespace Orchard.Commands {
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="output"></param>
+        /// <returns></returns>
         public CommandReturnCodes StopHost(TextReader input, TextWriter output) {
             try {
                 if (_hostContainer != null) {
@@ -150,6 +201,12 @@ namespace Orchard.Commands {
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="output"></param>
+        /// <param name="title"></param>
+        /// <param name="exception"></param>
         private void OutputException(TextWriter output, LocalizedString title, Exception exception) {
             // Display header
             output.WriteLine();
@@ -190,6 +247,10 @@ namespace Orchard.Commands {
             output.WriteLine();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope")]
         private IContainer CreateHostContainer() {
             var hostContainer = OrchardStarter.CreateHostContainer(ContainerRegistrations);
@@ -199,6 +260,11 @@ namespace Orchard.Commands {
             return hostContainer;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tenant"></param>
+        /// <returns></returns>
         private IWorkContextScope CreateStandaloneEnvironment(string tenant) {
             var host = _hostContainer.Resolve<IOrchardHost>();
             var tenantManager = _hostContainer.Resolve<IShellSettingsManager>();
@@ -221,6 +287,10 @@ namespace Orchard.Commands {
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="builder"></param>
         protected void ContainerRegistrations(ContainerBuilder builder) {
             MvcSingletons(builder);
 
@@ -229,6 +299,10 @@ namespace Orchard.Commands {
             builder.RegisterInstance(CreateShellRegistrations()).As<IShellContainerRegistrations>();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         private CommandHostShellContainerRegistrations CreateShellRegistrations() {
             return new CommandHostShellContainerRegistrations {
                 Registrations = shellBuilder => {
@@ -243,12 +317,19 @@ namespace Orchard.Commands {
             };
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="builder"></param>
         static void MvcSingletons(ContainerBuilder builder) {
             builder.Register(ctx => RouteTable.Routes).SingleInstance();
             builder.Register(ctx => ModelBinders.Binders).SingleInstance();
             builder.Register(ctx => ViewEngines.Engines).SingleInstance();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private class CommandHostShellContainerRegistrations : IShellContainerRegistrations {
             public Action<ContainerBuilder> Registrations { get; set; }
         }

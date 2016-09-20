@@ -4,11 +4,11 @@ using Orchard.Localization;
 
 namespace Orchard.Commands {
     /// <summary>
-    /// 
+    /// 命令的主机环境
     /// </summary>
     internal class CommandHostEnvironment : HostEnvironment {
         /// <summary>
-        /// 
+        /// 构造函数
         /// </summary>
         public CommandHostEnvironment() {
             T = NullLocalizer.Instance;

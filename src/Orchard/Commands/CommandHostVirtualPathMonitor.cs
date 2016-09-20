@@ -28,6 +28,9 @@ namespace Orchard.Commands {
             return new EmptyVolativeToken(filename);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public class EmptyVolativeToken : IVolatileToken {
             private readonly string _filename;
 
@@ -48,6 +51,9 @@ namespace Orchard.Commands {
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public class FileToken : IVolatileToken {
             private readonly string _filename;
             private readonly DateTime _lastWriteTimeUtc;
@@ -71,15 +77,25 @@ namespace Orchard.Commands {
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public class DirectoryToken : IVolatileToken {
             private readonly string _filename;
             private readonly DateTime _lastWriteTimeUtc;
 
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="filename"></param>
             public DirectoryToken(string filename) {
                 _filename = filename;
                 _lastWriteTimeUtc = Directory.GetLastWriteTimeUtc(filename);
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
             public bool IsCurrent {
                 get {
                     try {

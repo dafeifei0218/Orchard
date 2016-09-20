@@ -6,19 +6,39 @@ using Orchard.Localization;
 using Orchard.Exceptions;
 
 namespace Orchard.Commands {
+    /// <summary>
+    /// 默认Orchard命令处理
+    /// </summary>
     public abstract class DefaultOrchardCommandHandler : ICommandHandler {
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         protected DefaultOrchardCommandHandler() {
             T = NullLocalizer.Instance;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public Localizer T { get; set; }
+        /// <summary>
+        /// 命令上下文
+        /// </summary>
         public CommandContext Context { get; set; }
 
+        /// <summary>
+        /// 执行
+        /// </summary>
+        /// <param name="context">命令上下文</param>
         public void Execute(CommandContext context) {
             SetSwitchValues(context);
             Invoke(context);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context">命令上下文</param>
         private void SetSwitchValues(CommandContext context) {
             if (context.Switches != null && context.Switches.Any()) {
                 foreach (var commandSwitch in context.Switches) {
@@ -27,6 +47,10 @@ namespace Orchard.Commands {
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="commandSwitch"></param>
         private void SetSwitchValue(KeyValuePair<string, string> commandSwitch) {
             // Find the property
             PropertyInfo propertyInfo = GetType().GetProperty(commandSwitch.Key, BindingFlags.Instance | BindingFlags.Public | BindingFlags.IgnoreCase);
@@ -54,6 +78,10 @@ namespace Orchard.Commands {
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context">命令上下文</param>
         private void Invoke(CommandContext context) {
             CheckMethodForSwitches(context.CommandDescriptor.MethodInfo, context.Switches);
 
@@ -69,6 +97,12 @@ namespace Orchard.Commands {
                 context.Output.Write(result);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="methodInfo"></param>
+        /// <param name="arguments"></param>
+        /// <returns></returns>
         private static object[] GetInvokeParametersForMethod(MethodInfo methodInfo, IList<string> arguments) {
             var invokeParameters = new List<object>();
             var args = new List<string>(arguments);
@@ -101,6 +135,11 @@ namespace Orchard.Commands {
             return invokeParameters.ToArray();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="methodInfo"></param>
+        /// <param name="switches"></param>
         private void CheckMethodForSwitches(MethodInfo methodInfo, IDictionary<string, string> switches) {
             if (switches == null || switches.Count == 0)
                 return;

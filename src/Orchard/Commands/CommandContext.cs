@@ -21,11 +21,11 @@ namespace Orchard.Commands {
         /// </summary>
         public string Command { get; set; }
         /// <summary>
-        /// 参数
+        /// 参数集合
         /// </summary>
         public IEnumerable<string> Arguments { get; set; }
         /// <summary>
-        /// 开关
+        /// 开关集合
         /// </summary>
         public IDictionary<string,string> Switches { get; set; }
 

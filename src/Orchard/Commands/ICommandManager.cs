@@ -13,7 +13,7 @@ namespace Orchard.Commands {
         /// <summary>
         /// 获取命令描述列表
         /// </summary>
-        /// <returns></returns>
+        /// <returns>命令描述集合</returns>
         IEnumerable<CommandDescriptor> GetCommandDescriptors();
     }
 }

@@ -8,9 +8,9 @@ namespace Orchard.Commands {
     /// </summary>
     public class CommandModule : Module {
         /// <summary>
-        /// 附加
+        /// 附加组件注册
         /// </summary>
-        /// <param name="componentRegistry"></param>
+        /// <param name="componentRegistry">组件注册接口</param>
         /// <param name="registration"></param>
         protected override void AttachToComponentRegistration(IComponentRegistry componentRegistry, IComponentRegistration registration) {
 

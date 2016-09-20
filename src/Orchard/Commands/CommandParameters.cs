@@ -11,7 +11,7 @@ namespace Orchard.Commands {
         /// </summary>
         public IEnumerable<string> Arguments { get; set; }
         /// <summary>
-        /// 开关字段
+        /// 开关字段字典
         /// </summary>
         public IDictionary<string, string> Switches { get; set; }
 
