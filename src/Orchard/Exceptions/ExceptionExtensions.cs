@@ -8,7 +8,15 @@ using System.Security;
 using System.Runtime.InteropServices;
 
 namespace Orchard.Exceptions {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class ExceptionExtensions {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ex"></param>
+        /// <returns></returns>
         public static bool IsFatal(this Exception ex) {
             return ex is OrchardSecurityException ||
                 ex is StackOverflowException ||

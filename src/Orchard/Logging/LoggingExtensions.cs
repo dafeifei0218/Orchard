@@ -189,7 +189,7 @@ namespace Orchard.Logging {
         /// 
         /// </summary>
         /// <param name="logger">日志</param>
-        /// <param name="level"></param>
+        /// <param name="level">日志级别</param>
         /// <param name="exception">异常</param>
         /// <param name="format">格式</param>
         /// <param name="objects">对象集合</param>

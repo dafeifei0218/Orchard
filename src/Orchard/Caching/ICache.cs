@@ -11,7 +11,7 @@ namespace Orchard.Caching {
         /// 获取缓存
         /// </summary>
         /// <param name="key">键</param>
-        /// <param name="acquire"></param>
+        /// <param name="acquire">获取上下文的委托</param>
         /// <returns></returns>
         TResult Get(TKey key, Func<AcquireContext<TKey>, TResult> acquire);
     }

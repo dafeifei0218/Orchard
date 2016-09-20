@@ -1,6 +1,6 @@
 namespace Orchard {
     /// <summary>
-    /// 映射
+    /// 映射接口
     /// </summary>
     /// <typeparam name="TSource">源</typeparam>
     /// <typeparam name="TTarget">目标</typeparam>
@@ -9,7 +9,7 @@ namespace Orchard {
         /// 映射
         /// </summary>
         /// <param name="source">源</param>
-        /// <returns></returns>
+        /// <returns>目标</returns>
         TTarget Map(TSource source);
     }
 }

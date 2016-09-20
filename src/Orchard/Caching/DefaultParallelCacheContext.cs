@@ -3,9 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace Orchard.Caching {
+    /// <summary>
+    /// 
+    /// </summary>
     public class DefaultParallelCacheContext : IParallelCacheContext {
         private readonly ICacheContextAccessor _cacheContextAccessor;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cacheContextAccessor"></param>
         public DefaultParallelCacheContext(ICacheContextAccessor cacheContextAccessor) {
             _cacheContextAccessor = cacheContextAccessor;
         }
@@ -46,6 +53,10 @@ namespace Orchard.Caching {
             return new TaskWithAcquireContext<T>(_cacheContextAccessor, function);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
         public class TaskWithAcquireContext<T> : ITask<T> {
             private readonly ICacheContextAccessor _cacheContextAccessor;
             private readonly Func<T> _function;
@@ -89,6 +100,9 @@ namespace Orchard.Caching {
                 }
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
             public void Dispose() {
                 Finish();
             }
@@ -106,6 +120,10 @@ namespace Orchard.Caching {
                 }
             }
 
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="token"></param>
             private void AddToken(IVolatileToken token) {
                 if (_tokens == null)
                     _tokens = new List<IVolatileToken>();

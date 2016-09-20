@@ -82,7 +82,7 @@ namespace Orchard.Caching
                 IsCurrent = true;
             }
             /// <summary>
-            /// 是否当前
+            /// 是否是当前的对象，ture：缓存有效，false：缓存失效
             /// </summary>
             public bool IsCurrent { get; private set; }
             /// <summary>

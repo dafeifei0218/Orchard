@@ -18,7 +18,7 @@ namespace Orchard.Caching {
         /// <summary>
         /// 构造函数
         /// </summary>
-        /// <param name="cacheContextAccessor"></param>
+        /// <param name="cacheContextAccessor">缓存上下文访问器</param>
         public Cache(ICacheContextAccessor cacheContextAccessor) {
             _cacheContextAccessor = cacheContextAccessor;
             _entries = new ConcurrentDictionary<TKey, CacheEntry>();

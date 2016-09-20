@@ -3,7 +3,7 @@
 namespace Orchard.Settings {
     /// <summary>
     /// Interface provided by the "settings" model.
-    /// 设置模型借口
+    /// 设置模型接口
     /// </summary>
     public interface ISite : IContent {
         /// <summary>
@@ -11,7 +11,7 @@ namespace Orchard.Settings {
         /// </summary>
         string PageTitleSeparator { get; }
         /// <summary>
-        /// 
+        /// 站点名称
         /// </summary>
         string SiteName { get; }
         /// <summary>
@@ -51,11 +51,11 @@ namespace Orchard.Settings {
         /// </summary>
         int MaxPageSize { get; set; }
         /// <summary>
-        /// 
+        /// 最大页数
         /// </summary>
         int MaxPagedCount { get; set; }
         /// <summary>
-        /// 
+        /// 基本Url
         /// </summary>
         string BaseUrl { get; }
         /// <summary>

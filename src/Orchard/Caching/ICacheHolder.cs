@@ -11,7 +11,7 @@ namespace Orchard.Caching {
         /// <typeparam name="TKey">键</typeparam>
         /// <typeparam name="TResult">结果</typeparam>
         /// <param name="component">组件</param>
-        /// <returns>缓存</returns>
+        /// <returns>缓存接口</returns>
         ICache<TKey, TResult> GetCache<TKey, TResult>(Type component);
     }
 }

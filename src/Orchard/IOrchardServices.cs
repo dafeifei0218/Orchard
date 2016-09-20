@@ -8,9 +8,21 @@ namespace Orchard {
     /// Most important parts of the Orchard API
     /// </summary>
     public interface IOrchardServices : IDependency {
+        /// <summary>
+        /// 
+        /// </summary>
         IContentManager ContentManager { get; }
+        /// <summary>
+        /// 
+        /// </summary>
         ITransactionManager TransactionManager { get; }
+        /// <summary>
+        /// 
+        /// </summary>
         IAuthorizer Authorizer { get; }
+        /// <summary>
+        /// 
+        /// </summary>
         INotifier Notifier { get; }
 
         /// <summary>
@@ -27,6 +39,9 @@ namespace Orchard {
         /// </example>
         dynamic New { get; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         WorkContext WorkContext { get; }
     }
 }

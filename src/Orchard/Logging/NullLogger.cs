@@ -5,6 +5,7 @@ namespace Orchard.Logging {
     /// ø’»’÷æ
     /// </summary>
     public class NullLogger : ILogger {
+        // µ¿˝
         private static readonly ILogger _instance = new NullLogger();
 
         /// <summary>

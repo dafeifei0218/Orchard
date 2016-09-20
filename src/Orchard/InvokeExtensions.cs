@@ -5,7 +5,9 @@ using Orchard.Logging;
 using Orchard.Exceptions;
 
 namespace Orchard {
-
+    /// <summary>
+    /// 
+    /// </summary>
     public static class InvokeExtensions {
 
         /// <summary>
@@ -31,6 +33,15 @@ namespace Orchard {
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TEvents"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="events"></param>
+        /// <param name="dispatch"></param>
+        /// <param name="logger"></param>
+        /// <returns></returns>
         public static IEnumerable<TResult> Invoke<TEvents, TResult>(this IEnumerable<TEvents> events, Func<TEvents, TResult> dispatch, ILogger logger) {
             
             foreach (var sink in events) {
@@ -55,7 +66,11 @@ namespace Orchard {
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ex"></param>
+        /// <returns></returns>
         private static bool IsLogged(Exception ex) {
             return ex is OrchardSecurityException || !ex.IsFatal();
         }

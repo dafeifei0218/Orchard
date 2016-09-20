@@ -1,6 +1,6 @@
 ﻿namespace Orchard.Caching {
     /// <summary>
-    /// 缓存上下文访问器
+    /// 缓存上下文访问器接口
     /// </summary>
     public interface ICacheContextAccessor {
         /// <summary>

@@ -171,12 +171,16 @@ namespace Orchard.Logging {
             return Factory.Create(Logger.Name + "." + name);
         }
 
+        #region Debug
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="message"></param>
-        public void Debug(String message) {
-            if (IsDebugEnabled) {
+        public void Debug(String message)
+        {
+            if (IsDebugEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Debug, message, null);
             }
@@ -186,8 +190,10 @@ namespace Orchard.Logging {
         /// 
         /// </summary>
         /// <param name="messageFactory"></param>
-        public void Debug(Func<string> messageFactory) {
-            if (IsDebugEnabled) {
+        public void Debug(Func<string> messageFactory)
+        {
+            if (IsDebugEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Debug, messageFactory.Invoke(), null);
             }
@@ -198,20 +204,28 @@ namespace Orchard.Logging {
         /// </summary>
         /// <param name="message"></param>
         /// <param name="exception"></param>
-        public void Debug(String message, Exception exception) {
-            if (IsDebugEnabled) {
+        public void Debug(String message, Exception exception)
+        {
+            if (IsDebugEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Debug, message, exception);
             }
         }
+
+        #endregion
+
+        #region DebugFormat
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="format"></param>
         /// <param name="args"></param>
-        public void DebugFormat(String format, params Object[] args) {
-            if (IsDebugEnabled) {
+        public void DebugFormat(String format, params Object[] args)
+        {
+            if (IsDebugEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Debug, new SystemStringFormat(CultureInfo.InvariantCulture, format, args), null);
             }
@@ -223,8 +237,10 @@ namespace Orchard.Logging {
         /// <param name="exception"></param>
         /// <param name="format"></param>
         /// <param name="args"></param>
-        public void DebugFormat(Exception exception, String format, params Object[] args) {
-            if (IsDebugEnabled) {
+        public void DebugFormat(Exception exception, String format, params Object[] args)
+        {
+            if (IsDebugEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Debug, new SystemStringFormat(CultureInfo.InvariantCulture, format, args), exception);
             }
@@ -236,8 +252,10 @@ namespace Orchard.Logging {
         /// <param name="formatProvider"></param>
         /// <param name="format"></param>
         /// <param name="args"></param>
-        public void DebugFormat(IFormatProvider formatProvider, String format, params Object[] args) {
-            if (IsDebugEnabled) {
+        public void DebugFormat(IFormatProvider formatProvider, String format, params Object[] args)
+        {
+            if (IsDebugEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Debug, new SystemStringFormat(formatProvider, format, args), null);
             }
@@ -250,19 +268,27 @@ namespace Orchard.Logging {
         /// <param name="formatProvider"></param>
         /// <param name="format"></param>
         /// <param name="args"></param>
-        public void DebugFormat(Exception exception, IFormatProvider formatProvider, String format, params Object[] args) {
-            if (IsDebugEnabled) {
+        public void DebugFormat(Exception exception, IFormatProvider formatProvider, String format, params Object[] args)
+        {
+            if (IsDebugEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Debug, new SystemStringFormat(formatProvider, format, args), exception);
             }
         }
 
+        #endregion
+
+        #region Error
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="message"></param>
-        public void Error(String message) {
-            if (IsErrorEnabled) {
+        public void Error(String message)
+        {
+            if (IsErrorEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Error, message, null);
             }
@@ -272,8 +298,10 @@ namespace Orchard.Logging {
         /// 
         /// </summary>
         /// <param name="messageFactory"></param>
-        public void Error(Func<string> messageFactory) {
-            if (IsErrorEnabled) {
+        public void Error(Func<string> messageFactory)
+        {
+            if (IsErrorEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Error, messageFactory.Invoke(), null);
             }
@@ -284,20 +312,28 @@ namespace Orchard.Logging {
         /// </summary>
         /// <param name="message"></param>
         /// <param name="exception"></param>
-        public void Error(String message, Exception exception) {
-            if (IsErrorEnabled) {
+        public void Error(String message, Exception exception)
+        {
+            if (IsErrorEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Error, message, exception);
             }
         }
+
+        #endregion
+
+        #region ErrorFormat
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="format"></param>
         /// <param name="args"></param>
-        public void ErrorFormat(String format, params Object[] args) {
-            if (IsErrorEnabled) {
+        public void ErrorFormat(String format, params Object[] args)
+        {
+            if (IsErrorEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Error, new SystemStringFormat(CultureInfo.InvariantCulture, format, args), null);
             }
@@ -309,8 +345,10 @@ namespace Orchard.Logging {
         /// <param name="exception"></param>
         /// <param name="format"></param>
         /// <param name="args"></param>
-        public void ErrorFormat(Exception exception, String format, params Object[] args) {
-            if (IsErrorEnabled) {
+        public void ErrorFormat(Exception exception, String format, params Object[] args)
+        {
+            if (IsErrorEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Error, new SystemStringFormat(CultureInfo.InvariantCulture, format, args), exception);
             }
@@ -322,8 +360,10 @@ namespace Orchard.Logging {
         /// <param name="formatProvider"></param>
         /// <param name="format"></param>
         /// <param name="args"></param>
-        public void ErrorFormat(IFormatProvider formatProvider, String format, params Object[] args) {
-            if (IsErrorEnabled) {
+        public void ErrorFormat(IFormatProvider formatProvider, String format, params Object[] args)
+        {
+            if (IsErrorEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Error, new SystemStringFormat(formatProvider, format, args), null);
             }
@@ -336,19 +376,27 @@ namespace Orchard.Logging {
         /// <param name="formatProvider"></param>
         /// <param name="format"></param>
         /// <param name="args"></param>
-        public void ErrorFormat(Exception exception, IFormatProvider formatProvider, String format, params Object[] args) {
-            if (IsErrorEnabled) {
+        public void ErrorFormat(Exception exception, IFormatProvider formatProvider, String format, params Object[] args)
+        {
+            if (IsErrorEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Error, new SystemStringFormat(formatProvider, format, args), exception);
             }
-        }
+        } 
+
+        #endregion
+
+        #region Fatal
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="message"></param>
-        public void Fatal(String message) {
-            if (IsFatalEnabled) {
+        public void Fatal(String message)
+        {
+            if (IsFatalEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Fatal, message, null);
             }
@@ -358,8 +406,10 @@ namespace Orchard.Logging {
         /// 
         /// </summary>
         /// <param name="messageFactory"></param>
-        public void Fatal(Func<string> messageFactory) {
-            if (IsFatalEnabled) {
+        public void Fatal(Func<string> messageFactory)
+        {
+            if (IsFatalEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Fatal, messageFactory.Invoke(), null);
             }
@@ -370,20 +420,28 @@ namespace Orchard.Logging {
         /// </summary>
         /// <param name="message"></param>
         /// <param name="exception"></param>
-        public void Fatal(String message, Exception exception) {
-            if (IsFatalEnabled) {
+        public void Fatal(String message, Exception exception)
+        {
+            if (IsFatalEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Fatal, message, exception);
             }
-        }
+        } 
+
+        #endregion
+
+        #region FatalFormat
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="format"></param>
         /// <param name="args"></param>
-        public void FatalFormat(String format, params Object[] args) {
-            if (IsFatalEnabled) {
+        public void FatalFormat(String format, params Object[] args)
+        {
+            if (IsFatalEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Fatal, new SystemStringFormat(CultureInfo.InvariantCulture, format, args), null);
             }
@@ -395,8 +453,10 @@ namespace Orchard.Logging {
         /// <param name="exception"></param>
         /// <param name="format"></param>
         /// <param name="args"></param>
-        public void FatalFormat(Exception exception, String format, params Object[] args) {
-            if (IsFatalEnabled) {
+        public void FatalFormat(Exception exception, String format, params Object[] args)
+        {
+            if (IsFatalEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Fatal, new SystemStringFormat(CultureInfo.InvariantCulture, format, args), exception);
             }
@@ -408,8 +468,10 @@ namespace Orchard.Logging {
         /// <param name="formatProvider"></param>
         /// <param name="format"></param>
         /// <param name="args"></param>
-        public void FatalFormat(IFormatProvider formatProvider, String format, params Object[] args) {
-            if (IsFatalEnabled) {
+        public void FatalFormat(IFormatProvider formatProvider, String format, params Object[] args)
+        {
+            if (IsFatalEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Fatal, new SystemStringFormat(formatProvider, format, args), null);
             }
@@ -422,19 +484,27 @@ namespace Orchard.Logging {
         /// <param name="formatProvider"></param>
         /// <param name="format"></param>
         /// <param name="args"></param>
-        public void FatalFormat(Exception exception, IFormatProvider formatProvider, String format, params Object[] args) {
-            if (IsFatalEnabled) {
+        public void FatalFormat(Exception exception, IFormatProvider formatProvider, String format, params Object[] args)
+        {
+            if (IsFatalEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Fatal, new SystemStringFormat(formatProvider, format, args), exception);
             }
         }
 
+        #endregion
+
+        #region Info
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="message"></param>
-        public void Info(String message) {
-            if (IsInfoEnabled) {
+        public void Info(String message)
+        {
+            if (IsInfoEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Info, message, null);
             }
@@ -444,8 +514,10 @@ namespace Orchard.Logging {
         /// 
         /// </summary>
         /// <param name="messageFactory"></param>
-        public void Info(Func<string> messageFactory) {
-            if (IsInfoEnabled) {
+        public void Info(Func<string> messageFactory)
+        {
+            if (IsInfoEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Info, messageFactory.Invoke(), null);
             }
@@ -456,20 +528,28 @@ namespace Orchard.Logging {
         /// </summary>
         /// <param name="message"></param>
         /// <param name="exception"></param>
-        public void Info(String message, Exception exception) {
-            if (IsInfoEnabled) {
+        public void Info(String message, Exception exception)
+        {
+            if (IsInfoEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Info, message, exception);
             }
         }
+
+        #endregion
+
+        #region InfoFormat
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="format"></param>
         /// <param name="args"></param>
-        public void InfoFormat(String format, params Object[] args) {
-            if (IsInfoEnabled) {
+        public void InfoFormat(String format, params Object[] args)
+        {
+            if (IsInfoEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Info, new SystemStringFormat(CultureInfo.InvariantCulture, format, args), null);
             }
@@ -481,8 +561,10 @@ namespace Orchard.Logging {
         /// <param name="exception"></param>
         /// <param name="format"></param>
         /// <param name="args"></param>
-        public void InfoFormat(Exception exception, String format, params Object[] args) {
-            if (IsInfoEnabled) {
+        public void InfoFormat(Exception exception, String format, params Object[] args)
+        {
+            if (IsInfoEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Info, new SystemStringFormat(CultureInfo.InvariantCulture, format, args), exception);
             }
@@ -494,8 +576,10 @@ namespace Orchard.Logging {
         /// <param name="formatProvider"></param>
         /// <param name="format"></param>
         /// <param name="args"></param>
-        public void InfoFormat(IFormatProvider formatProvider, String format, params Object[] args) {
-            if (IsInfoEnabled) {
+        public void InfoFormat(IFormatProvider formatProvider, String format, params Object[] args)
+        {
+            if (IsInfoEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Info, new SystemStringFormat(formatProvider, format, args), null);
             }
@@ -508,19 +592,27 @@ namespace Orchard.Logging {
         /// <param name="formatProvider"></param>
         /// <param name="format"></param>
         /// <param name="args"></param>
-        public void InfoFormat(Exception exception, IFormatProvider formatProvider, String format, params Object[] args) {
-            if (IsInfoEnabled) {
+        public void InfoFormat(Exception exception, IFormatProvider formatProvider, String format, params Object[] args)
+        {
+            if (IsInfoEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Info, new SystemStringFormat(formatProvider, format, args), exception);
             }
-        }
+        } 
+
+        #endregion
+
+        #region Warn
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="message"></param>
-        public void Warn(String message) {
-            if (IsWarnEnabled) {
+        public void Warn(String message)
+        {
+            if (IsWarnEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Warn, message, null);
             }
@@ -530,8 +622,10 @@ namespace Orchard.Logging {
         /// 
         /// </summary>
         /// <param name="messageFactory"></param>
-        public void Warn(Func<string> messageFactory) {
-            if (IsWarnEnabled) {
+        public void Warn(Func<string> messageFactory)
+        {
+            if (IsWarnEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Warn, messageFactory.Invoke(), null);
             }
@@ -542,20 +636,28 @@ namespace Orchard.Logging {
         /// </summary>
         /// <param name="message"></param>
         /// <param name="exception"></param>
-        public void Warn(String message, Exception exception) {
-            if (IsWarnEnabled) {
+        public void Warn(String message, Exception exception)
+        {
+            if (IsWarnEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Warn, message, exception);
             }
-        }
+        } 
+
+        #endregion
+
+        #region WarnFormat
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="format"></param>
         /// <param name="args"></param>
-        public void WarnFormat(String format, params Object[] args) {
-            if (IsWarnEnabled) {
+        public void WarnFormat(String format, params Object[] args)
+        {
+            if (IsWarnEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Warn, new SystemStringFormat(CultureInfo.InvariantCulture, format, args), null);
             }
@@ -567,8 +669,10 @@ namespace Orchard.Logging {
         /// <param name="exception"></param>
         /// <param name="format"></param>
         /// <param name="args"></param>
-        public void WarnFormat(Exception exception, String format, params Object[] args) {
-            if (IsWarnEnabled) {
+        public void WarnFormat(Exception exception, String format, params Object[] args)
+        {
+            if (IsWarnEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Warn, new SystemStringFormat(CultureInfo.InvariantCulture, format, args), exception);
             }
@@ -580,8 +684,10 @@ namespace Orchard.Logging {
         /// <param name="formatProvider"></param>
         /// <param name="format"></param>
         /// <param name="args"></param>
-        public void WarnFormat(IFormatProvider formatProvider, String format, params Object[] args) {
-            if (IsWarnEnabled) {
+        public void WarnFormat(IFormatProvider formatProvider, String format, params Object[] args)
+        {
+            if (IsWarnEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Warn, new SystemStringFormat(formatProvider, format, args), null);
             }
@@ -594,12 +700,16 @@ namespace Orchard.Logging {
         /// <param name="formatProvider"></param>
         /// <param name="format"></param>
         /// <param name="args"></param>
-        public void WarnFormat(Exception exception, IFormatProvider formatProvider, String format, params Object[] args) {
-            if (IsWarnEnabled) {
+        public void WarnFormat(Exception exception, IFormatProvider formatProvider, String format, params Object[] args)
+        {
+            if (IsWarnEnabled)
+            {
                 AddExtendedThreadInfo();
                 Logger.Log(declaringType, Level.Warn, new SystemStringFormat(formatProvider, format, args), exception);
             }
         }
+
+        #endregion
 
         /// <summary>
         /// 

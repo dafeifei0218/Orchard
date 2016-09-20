@@ -10,10 +10,17 @@ namespace Orchard.Caching {
         private readonly ICacheContextAccessor _cacheContextAccessor;
         private readonly ConcurrentDictionary<CacheKey, object> _caches = new ConcurrentDictionary<CacheKey, object>();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cacheContextAccessor"></param>
         public DefaultCacheHolder(ICacheContextAccessor cacheContextAccessor) {
             _cacheContextAccessor = cacheContextAccessor;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         class CacheKey : Tuple<Type, Type, Type> {
             public CacheKey(Type component, Type key, Type result)
                 : base(component, key, result) {

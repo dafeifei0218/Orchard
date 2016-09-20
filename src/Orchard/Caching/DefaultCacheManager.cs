@@ -29,6 +29,14 @@ namespace Orchard.Caching {
             return _cacheHolder.GetCache<TKey, TResult>(_component);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TKey"></typeparam>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="key"></param>
+        /// <param name="acquire"></param>
+        /// <returns></returns>
         public TResult Get<TKey, TResult>(TKey key, Func<AcquireContext<TKey>, TResult> acquire) {
             return GetCache<TKey, TResult>().Get(key, acquire);
         }
