@@ -33,10 +33,10 @@ namespace Orchard.Caching {
         public TResult Get(TKey key, Func<AcquireContext<TKey>, TResult> acquire) {
             var entry = _entries.AddOrUpdate(key,
                 // "Add" lambda
-                // 添加lambda
+                // 添加Lambda
                 k => AddEntry(k, acquire),
                 // "Update" lambda
-                // 更新lambda
+                // 更新Lambda
                 (k, currentEntry) => UpdateEntry(currentEntry, k, acquire));
 
             return entry.Result;
