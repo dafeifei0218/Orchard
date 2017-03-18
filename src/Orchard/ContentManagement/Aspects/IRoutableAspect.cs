@@ -4,7 +4,7 @@
     /// </summary>
     public interface IRoutableAspect : ITitleAspect, IAliasAspect {
         /// <summary>
-        /// 
+        /// 塞
         /// </summary>
         string Slug { get; set; }
     }
