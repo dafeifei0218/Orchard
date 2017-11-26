@@ -47,8 +47,8 @@ namespace Orchard.WarmupStarter
         /// 构造函数
         /// </summary>
         /// <param name="initialization"></param>
-        /// <param name="beginRequest"></param>
-        /// <param name="endRequest"></param>
+        /// <param name="beginRequest">开始请求</param>
+        /// <param name="endRequest">结束请求</param>
         public Starter(Func<HttpApplication, T> initialization, Action<HttpApplication, T> beginRequest, Action<HttpApplication, T> endRequest)
         {
             _initialization = initialization;
@@ -114,7 +114,7 @@ namespace Orchard.WarmupStarter
             }
 
             // Only notify if the initialization has successfully completed
-            //如果初始化已成功完成，结果不为空，只有通知。
+            // 如果初始化已成功完成，结果不为空，只有通知。
             if (_initializationResult != null)
             {
                 _beginRequest(application, _initializationResult);
@@ -128,7 +128,7 @@ namespace Orchard.WarmupStarter
         public void OnEndRequest(HttpApplication application)
         {
             // Only notify if the initialization has successfully completed
-            //如果已经成功初始化的通知
+            // 如果已经成功初始化的通知
             if (_initializationResult != null)
             {
                 _endRequest(application, _initializationResult);

@@ -64,8 +64,7 @@ namespace Orchard.WarmupStarter {
         }
 
         /// <summary>
-        /// Url编码
-        /// 将一个url字符串转换成另一个字包含数字、字母和下划线的字符串
+        /// Url编码，将一个url字符串转换成另一个字包含数字、字母和下划线的字符串。
         /// </summary>
         /// <param name="url">url</param>
         /// <returns></returns>
